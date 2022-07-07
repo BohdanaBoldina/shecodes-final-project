@@ -25,7 +25,7 @@
 
     <div class="card">
       <div class="card-body">
-        <div class="container">
+        <div class="container" id="search-system">
           <button>Current</button>
           <form id="submit-search">
             <input
@@ -40,38 +40,39 @@
               id="submit-input"
             />
           </form>
-          <br />
         </div>
-        <div class="container">
+         <br />
+        <div class="container" id="main-system">
   <div class="row align-items-start">
-    <div class="col" id="precipitation">
-      WIND <br />
+    <div class="col" id="precipitation-info">
+     <h5> WIND <br />
       55% <br/>
        RAIN <br />
-      0% <br/>
+      0% <br/></h5>
     </div>
-    <div class="col" id="main-info">
-     KYIV <br />
+    <div class="col" id="city-info">
+    <h1> KYIV <br /></h1>
      <br />
-     <div class="container">
-     <div class="row">
-     <div class="col-6 col-sm-3">
-      Current time
+     <div class="container" id="main-city-info">
+     <div class="row justify-content-center">
+     <div class="col-4">
+     <span id="time"> T </span>
      </div>
-      <div class="col-6 col-sm-3">
-      Current temp
+      <div class="col-4">
+      <span id="temp">Current <br />Temp </span>
      </div></div></div>
     </div>
-    <div class="col">
-      HIGH <br />
+    <div class="col" id="temperature-info">
+     <h3> HIGHEST <br />
       26 <br/>
-      LOW <br />
-      13 <br/>
+      LOWEST <br />
+      13 <br/></h3>
     </div>
   </div>
       </div>
     </div>
-
+<br />
+<p>Advice of the day: please, take a windproof coat with you on a walk!</p>
     <script src="src/script2.js"></script>
   </body>
 </html>
