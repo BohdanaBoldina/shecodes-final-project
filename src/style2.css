@@ -8,6 +8,7 @@ video {
   position: absolute;
   right: 0;
   bottom: 0;
+  top: 0;
 }
 .card {
   height: 100%;
@@ -125,5 +126,7 @@ p {
   position: relative;
   display: inline;
   font-size: 15px;
-  margin-left: 20px;
+}
+#weekdays {
+  margin-right: 10px;
 }
