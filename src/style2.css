@@ -109,8 +109,10 @@ h5 {
   font-weight: 900;
 }
 p {
-  padding-right: 30px;
   font-style: italic;
+  background-color: rgba(245, 245, 245, 0.101);
+  padding: 5px;
+  margin-right: 25px;
 }
 #weekdays-info {
   background: 0;
@@ -129,4 +131,7 @@ p {
 }
 #weekdays {
   margin-right: 10px;
+}
+#cloud {
+  font-size: 40px;
 }
