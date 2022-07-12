@@ -11,8 +11,8 @@ video {
   top: 0;
 }
 .card {
-  height: 100%;
-  width: 100%;
+  height: 580px;
+  width: 720px;
   display: flexbox;
   padding: 50px 50px;
   background: rgba(61, 103, 128, 0.152);
@@ -75,17 +75,20 @@ input::placeholder {
 h5 {
 }
 #city-info {
-  margin-left: 20px;
-  display: block;
+  margin-left: 22px;
+  height: 180px;
+  width: 240px;
 }
 h1 {
-  font-size: 45px;
-  padding: 5px 60px;
+  font-size: 30px;
+  padding: 5px 20px;
 }
 #main-city-info {
+  width: 240px;
+}
+#main-currency {
   display: contents;
 }
-
 #time {
   margin-bottom: 0;
   padding: 0;
@@ -106,6 +109,8 @@ h1 {
 }
 #temperature-info {
   margin-left: 20px;
+  padding-left: 14px;
+  padding-right: 14px;
 }
 h3 {
 }
@@ -140,9 +145,11 @@ p {
   position: relative;
   display: inline;
   font-size: 15px;
+  padding: 10px 0 0 20px;
+  margin-left: -20px;
 }
 #weekdays {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 #cloud {
   font-size: 40px;
