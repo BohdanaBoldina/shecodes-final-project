@@ -71,6 +71,7 @@ input::placeholder {
   margin-left: 12px;
 }
 #precipitation-info {
+  width: 90px;
 }
 h5 {
 }
@@ -111,6 +112,7 @@ h1 {
   margin-left: 20px;
   padding-left: 14px;
   padding-right: 14px;
+  width: 127px;
 }
 h3 {
 }

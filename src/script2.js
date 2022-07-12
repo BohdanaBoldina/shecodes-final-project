@@ -1,26 +1,28 @@
 let currentTime = document.querySelector("#time");
 console.log(currentTime);
 let now = new Date();
-let weekdays = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+let weekdays = ["SUN", "MON", "TUE", "WED", "THUR", "FRI", "SAT"];
 let weekday = weekdays[now.getDay()];
 let hours = now.getHours();
 let minutes = now.getMinutes();
 currentTime.innerHTML = `${weekday} <br /> ${hours}:${minutes} `;
 
 function showTemperature(response) {
-  console.log();
-  let temperature = Math.round(response.data.main.temp);
-  let cityTemperature = document.querySelector("#temp");
-  cityTemperature.innerHTML = `${temperature}°C`;
+  console.log(response.data);
 
+  let cityTemperature = document.querySelector("#temp");
+  let cityWind = document.querySelector("#wind");
+  let cityRain = document.querySelector("#rain");
+  let cityHighestTemp = document.querySelector("#high");
+  let cityLowestTemp = document.querySelector("#low");
+  let cityDescription = document.querySelector("#description");
+
+  cityTemperature.innerHTML = `${Math.round(response.data.main.temp)}°C`;
+  cityWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+  cityRain.innerHTML = `${response.data.main.humidity}%`;
+  cityHighestTemp.innerHTML = `${Math.round(response.data.main.temp_max)}°C`;
+  cityLowestTemp.innerHTML = `${Math.round(response.data.main.temp_min)}°C`;
+  cityDescription.innerHTML = response.data.weather[0].description;
   function showCelciumTemperature(event) {
     let celciumTemperature = document.querySelector("#temp");
     let x = temperature;
