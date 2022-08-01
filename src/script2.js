@@ -7,6 +7,35 @@ let hours = now.getHours();
 let minutes = now.getMinutes();
 currentTime.innerHTML = `${weekday} <br /> ${hours}:${minutes} `;
 
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast-info");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tue", "Wed", "Thu"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `           <div class="col-3">
+            <div class="forecast-date">${day}</div>
+            <img
+              src="https://cdn0.iconfinder.com/data/icons/weather-web-app-ui/100/weather-22-512.png"
+              id="icon"
+              alt="Clear"
+              class="float-center"
+              height="30px"
+            />
+            <br />
+            <div class="forecast-temp">
+              <span class="forecast-temp-max">25°/</span>
+              <span class="forecast-temp-min">13°</span><br /><br />
+            </div>
+          
+        </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showCurrentTemp(response) {
   console.log(response);
   let currentCityTemperature = document.querySelector("#temp");
@@ -115,6 +144,6 @@ let celciumButton = document.querySelector("#celcium");
 celciumButton.addEventListener("click", showCelciumTemperature);
 
 let celsiusTemperature = null;
-
+showForecast();
 let farenheitButton = document.querySelector("#farenheit");
 farenheitButton.addEventListener("click", showFarenheitTemperature);
