@@ -7,7 +7,8 @@ let hours = now.getHours();
 let minutes = now.getMinutes();
 currentTime.innerHTML = `${weekday} <br /> ${hours}:${minutes} `;
 
-function showForecast() {
+function showForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecast-info");
 
   let forecastHTML = `<div class="row">`;
@@ -34,6 +35,14 @@ function showForecast() {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "083367c3a98d6341794f54630adaf2aa";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(showForecast);
 }
 
 function showCurrentTemp(response) {
@@ -108,6 +117,7 @@ function showTemperature(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  getForecast(response.data.coord);
 }
 
 /////
@@ -144,6 +154,6 @@ let celciumButton = document.querySelector("#celcium");
 celciumButton.addEventListener("click", showCelciumTemperature);
 
 let celsiusTemperature = null;
-showForecast();
+
 let farenheitButton = document.querySelector("#farenheit");
 farenheitButton.addEventListener("click", showFarenheitTemperature);
