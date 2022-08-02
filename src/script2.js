@@ -7,19 +7,30 @@ let hours = now.getHours();
 let minutes = now.getMinutes();
 currentTime.innerHTML = `${weekday} <br /> ${hours}:${minutes} `;
 
+function formatDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["SUN", "MON", "TUE", "WED", "THUR", "FRI", "SAT"];
+
+  return days[day];
+}
+
 function showForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast-info");
 
   let forecastHTML = `<div class="row">`;
 
-  forecast.forEach(function (forecastDay) {
-    forecastHTML =
-      forecastHTML +
-      `           <div class="col-3">
-            <div class="forecast-date">${forecastDay.dt}</div>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 4) {
+      forecastHTML =
+        forecastHTML +
+        `           <div class="col-3">
+            <div class="forecast-date">${formatDate(forecastDay.dt)}</div>
             <img
-              src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+              src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png"
               id="icon"
               alt="Clear"
               class="float-center"
@@ -27,11 +38,16 @@ function showForecast(response) {
             />
             <br />
             <div class="forecast-temp">
-              <span class="forecast-temp-max">${forecastDay.temp.max}°/</span>
-              <span class="forecast-temp-min">${forecastDay.temp.min}°</span><br /><br />
+              <span class="forecast-temp-max">${Math.round(
+                forecastDay.temp.max
+              )}°/</span>
+              <span class="forecast-temp-min">${Math.round(
+                forecastDay.temp.min
+              )}°</span><br /><br />
             </div>
           
         </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -64,15 +80,16 @@ function showCurrentTemp(response) {
   currentCityRain.innerHTML = `${response.data.main.humidity}%`;
   currentCityHighestTemp.innerHTML = `${Math.round(
     response.data.main.temp_max
-  )}°C`;
+  )}°`;
   currentCityLowestTemp.innerHTML = `${Math.round(
     response.data.main.temp_min
-  )}°C`;
+  )}°`;
   currentCityDescription.innerHTML = `*${response.data.weather[0].description}*`;
   currentIconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  getForecast(response.data.coord);
 }
 
 function showPosition(position) {
@@ -89,6 +106,7 @@ function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
+getCurrentPosition();
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", getCurrentPosition);
 
@@ -110,8 +128,8 @@ function showTemperature(response) {
   cityElement.innerHTML = response.data.name;
   cityWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
   cityRain.innerHTML = `${response.data.main.humidity}%`;
-  cityHighestTemp.innerHTML = `${Math.round(response.data.main.temp_max)}°C`;
-  cityLowestTemp.innerHTML = `${Math.round(response.data.main.temp_min)}°C`;
+  cityHighestTemp.innerHTML = `${Math.round(response.data.main.temp_max)}°`;
+  cityLowestTemp.innerHTML = `${Math.round(response.data.main.temp_min)}°`;
   cityDescription.innerHTML = `*${response.data.weather[0].description}*`;
   iconElement.setAttribute(
     "src",
