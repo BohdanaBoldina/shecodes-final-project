@@ -8,18 +8,18 @@ let minutes = now.getMinutes();
 currentTime.innerHTML = `${weekday} <br /> ${hours}:${minutes} `;
 
 function showForecast(response) {
-  console.log(response.data);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast-info");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tue", "Wed", "Thu"];
-  days.forEach(function (day) {
+
+  forecast.forEach(function (forecastDay) {
     forecastHTML =
       forecastHTML +
       `           <div class="col-3">
-            <div class="forecast-date">${day}</div>
+            <div class="forecast-date">${forecastDay.dt}</div>
             <img
-              src="https://cdn0.iconfinder.com/data/icons/weather-web-app-ui/100/weather-22-512.png"
+              src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
               id="icon"
               alt="Clear"
               class="float-center"
@@ -27,8 +27,8 @@ function showForecast(response) {
             />
             <br />
             <div class="forecast-temp">
-              <span class="forecast-temp-max">25°/</span>
-              <span class="forecast-temp-min">13°</span><br /><br />
+              <span class="forecast-temp-max">${forecastDay.temp.max}°/</span>
+              <span class="forecast-temp-min">${forecastDay.temp.min}°</span><br /><br />
             </div>
           
         </div>`;
